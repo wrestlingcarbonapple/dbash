@@ -48,10 +48,10 @@ fi
 
 # Headers
 headers="CONTAINER_ID IMAGE NAME"
-containers_with_headers=$(echo -e "$containers\n$headers" | column -t)
+containers_with_headers=$(echo -e "$headers\n$containers" | column -t)
 
 # Use fzf to select a container
-selected=$(echo "$containers_with_headers" | fzf --prompt="Select container: ")
+selected=$(echo "$containers_with_headers" | fzf --prompt="Select container: " --header-lines=1)
 
 # Exit if nothing selected
 [ -z "$selected" ] && exit 0
