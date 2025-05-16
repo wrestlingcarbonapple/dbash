@@ -19,6 +19,9 @@ sudo cp dbash/dbash /usr/bin
 sudo chmod a+x /usr/bin/dbash
 ```
 
+If youre feeling adventurous you can run this one-liner...
+
+`sudo curl -fsSL https://raw.githubusercontent.com/wrestlingcarbonapple/dbash/refs/heads/main/dbash -o /usr/bin/dbash && sudo chmod +x /usr/bin/dbash`
 ## Run
 
 Run `dbash [shell]` with optional shell type. Default is `bash` (hence the name of the script).
