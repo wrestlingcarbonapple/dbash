@@ -1,9 +1,36 @@
-
 #!/bin/bash
 
-# Ensure fzf is installed
+# Function: show help message
+show_help() {
+    cat << EOF
+Usage: $(basename "$0") [SHELL]
+
+Launch an interactive shell into a running Docker container selected via fzf.
+
+Arguments:
+  SHELL         Optional shell to run (default: bash). Examples: bash, sh, zsh.
+
+Options:
+  -h, --help    Show this help message and exit.
+
+Examples:
+  $(basename "$0")           # Uses bash by default
+  $(basename "$0") sh        # Uses 'sh' shell
+  $(basename "$0") --help    # Displays this help message
+EOF
+}
+
+# Parse --help or -h
+if [[ "$1" == "--help" || "$1" == "-h" ]]; then
+    show_help
+    exit 0
+fi
+# Optional parameter if bash is not available
+SHELL_TYPE="${1:-bash}"
+
+# Chack for fzf
 if ! command -v fzf &> /dev/null; then
-    echo "fzf not found. Please install with sudo apt install fzf"
+    echo "fzf not found, please check the README at https://github.com/wrestlingcarbonapple/dbash" 
     exit 1
 fi
 
@@ -26,5 +53,5 @@ selected=$(echo "$containers" | fzf --prompt="Select container: ")
 container_id=$(echo "$selected" | awk '{print $1}')
 
 # Exec into the container
-echo "Executing bash in container $container_id..."
-docker exec -it "$container_id" bash
+echo "Executing $SHELL_TYPE in container $container_id..."
+docker exec -it "$container_id" "$SHELL_TYPE" 
