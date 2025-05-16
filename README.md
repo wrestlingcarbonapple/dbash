@@ -25,5 +25,7 @@ If youre feeling adventurous you can run this one-liner...
 ## Run
 
 Run `dbash [shell]` with optional shell type. Default is `bash` (hence the name of the script).
+
 ![image](https://github.com/user-attachments/assets/dd475919-35aa-4c43-8d10-49ff46b00f25)
+
 Select the container you with to connect to and press <Enter>. If you have regrets, press <ESC> or power off your computer to exit.
