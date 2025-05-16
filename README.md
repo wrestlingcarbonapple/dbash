@@ -28,4 +28,4 @@ Run `dbash [shell]` with optional shell type. Default is `bash` (hence the name 
 
 ![image](https://github.com/user-attachments/assets/39756b2a-d212-456e-bcfc-396d81784f2d)
 
-Select the container you with to connect to and press <Enter>. If you have regrets, press <ESC> or power off your computer to exit.
+Select the container you with to connect to and press <kbd>Enter</kbd>. If you have regrets, press <kbd>ESC</kbd> or power off your computer to exit.
