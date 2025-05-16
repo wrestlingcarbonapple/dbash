@@ -27,7 +27,7 @@ sudo curl -fsSL https://raw.githubusercontent.com/wrestlingcarbonapple/dbash/ref
 
 ## Run
 
-Run `dbash [shell]` with optional shell type. Default is `bash` (hence the name of the script).
+Run `dbash [shell]` with optional shell type. Default is `bash` (hence the name of the script). As a bonus, you can send any command as a parameter, there are no safeguards here.
 
 ![image](https://github.com/user-attachments/assets/39756b2a-d212-456e-bcfc-396d81784f2d)
 
