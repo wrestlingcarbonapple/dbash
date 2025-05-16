@@ -3,20 +3,16 @@
 # Function: show help message
 show_help() {
     cat << EOF
-Usage: $(basename "$0") [SHELL]
+Usage: dbash 
 
 Launch an interactive shell into a running Docker container selected via fzf.
-
-Arguments:
-  SHELL         Optional shell to run (default: bash). Examples: bash, sh, zsh.
 
 Options:
   -h, --help    Show this help message and exit.
 
 Examples:
-  $(basename "$0")           # Uses bash by default
-  $(basename "$0") sh        # Uses 'sh' shell
-  $(basename "$0") --help    # Displays this help message
+  dbash           # Uses bash by default
+  dbash --help    # Displays this help message
 EOF
 }
 
@@ -35,7 +31,7 @@ if ! command -v fzf &> /dev/null; then
 fi
 
 # List running containers with name and image
-containers=$(docker ps --format "{{.ID}} {{.Image}} {{.Names}}" | column -t)
+containers=$(docker ps --format "{{.ID}} {{.Image}} {{.Names}}")
 
 # Check if there are any running containers
 if [ -z "$containers" ]; then
@@ -43,8 +39,12 @@ if [ -z "$containers" ]; then
     exit 0
 fi
 
+# Headers
+headers="CONTAINER_ID IMAGE NAME"
+containers_with_headers=$(echo -e "$containers\n$headers" | column -t)
+
 # Use fzf to select a container
-selected=$(echo "$containers" | fzf --prompt="Select container: ")
+selected=$(echo "$containers_with_headers" | fzf --prompt="Select container: ")
 
 # Exit if nothing selected
 [ -z "$selected" ] && exit 0
@@ -52,6 +52,8 @@ selected=$(echo "$containers" | fzf --prompt="Select container: ")
 # Extract container ID from selected line
 container_id=$(echo "$selected" | awk '{print $1}')
 
+selected_shell=$(cat /etc/shells | awk '{print $1}'| sed 1d | sort | fzf --header="SHELL" --prompt='Select shell>')
+
 # Exec into the container
-echo "Executing $SHELL_TYPE in container $container_id..."
-docker exec -it "$container_id" "$SHELL_TYPE" 
+echo "Executing $selected_shell in container $container_id..."
+docker exec -it "$container_id" "$selected_shell" 
