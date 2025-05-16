@@ -22,7 +22,7 @@ sudo chmod a+x /usr/bin/dbash
 Or if youre feeling adventurous you can run this one-liner...
 
 ```sh
-sudo curl -fsSL https://raw.githubusercontent.com/wrestlingcarbonapple/dbash/refs/heads/main/dbash -o /usr/bin/dbash && sudo chmod +x /usr/bin/dbash`
+sudo curl -fsSL https://raw.githubusercontent.com/wrestlingcarbonapple/dbash/refs/heads/main/dbash -o /usr/bin/dbash && sudo chmod +x /usr/bin/dbash
 ```
 
 ## Run
