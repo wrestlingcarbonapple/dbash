@@ -4,19 +4,16 @@ Since i don't remember docker container id's that well, what shells are availabl
 
 ## Requirements
 
-- fzf (install with `sudo apt install fzf`)
+- fzf (install with `sudo apt install fzf` or however your linux distro handles this)
 
 ## Install
-
-Clone the repository or copy the contents of the `dbash` file to any local file.
-Copy it to any directory in your root. I suggest `/usr/bin`
 
 In most cases, installing would go like this:
 
 ```sh
 git clone https://github.com/wrestlingcarbonapple/dbash.git
-sudo cp dbash/dbash /usr/bin
-sudo chmod a+x /usr/bin/dbash
+cd dbash
+make install
 ```
 
 Or if youre feeling adventurous you can run this one-liner...

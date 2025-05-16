@@ -1,5 +1,7 @@
 #!/bin/bash
 
+VERSION="1.0.0"
+
 # Function: show help message
 show_help() {
     cat << EOF
@@ -13,16 +15,21 @@ Options:
 Examples:
   dbash           # Uses bash by default
   dbash --help    # Displays this help message
+  dbash --version # Show version and exit
 EOF
 }
 
-# Parse --help or -h
+# Version
+if [[ "$1" == "--version" || "$1" == "-v" ]]; then
+    echo "$(basename "$0") version $VERSION"
+    exit 0
+fi
+
+# Help
 if [[ "$1" == "--help" || "$1" == "-h" ]]; then
     show_help
     exit 0
 fi
-# Optional parameter if bash is not available
-SHELL_TYPE="${1:-bash}"
 
 # Chack for fzf
 if ! command -v fzf &> /dev/null; then
