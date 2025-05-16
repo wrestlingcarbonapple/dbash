@@ -52,7 +52,10 @@ selected=$(echo "$containers_with_headers" | fzf --prompt="Select container: ")
 # Extract container ID from selected line
 container_id=$(echo "$selected" | awk '{print $1}')
 
-selected_shell=$(cat /etc/shells | awk '{print $1}'| sed 1d | sort | fzf --header="SHELL" --prompt='Select shell>')
+selected_shell=$(docker exec "$container_id" cat /etc/shells | awk '{print $1}'| sed 1d | sort | fzf --header="SHELL" --prompt='Select shell>')
+
+# Exit if nothing selected
+[ -z "$selected_shell" ] && exit 0
 
 # Exec into the container
 echo "Executing $selected_shell in container $container_id..."
